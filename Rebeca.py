@@ -122,6 +122,18 @@ st.markdown("""
         line-height: 1.5;
     }
 
+    .apology-box {
+        background: rgba(255, 46, 99, 0.12);
+        border: 1px solid rgba(255, 46, 99, 0.35);
+        border-radius: 18px;
+        padding: 1.4rem 1.6rem;
+        margin: 1.5rem 0;
+        text-align: left;
+        line-height: 1.7;
+        color: #ffc1d0;
+        font-size: 1.05rem;
+    }
+
     .stButton > button {
         background: linear-gradient(90deg, #c41e3a, #ff2e63, #ff4d6d) !important;
         color: white !important;
@@ -181,7 +193,7 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
-
+    
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #1a0000; }
     ::-webkit-scrollbar-thumb {
@@ -197,9 +209,7 @@ col_left, col_right = st.columns([1.15, 1.4], gap="large")
 # ========== STÂNGA - 100 DE MOTIVE ==========
 with col_left:
     st.markdown("## ❤️ 100 de motive de ce te iubesc")
-    st.markdown(
-        "<p style='text-align:center; color:#ff8a9a; font-size:0.95rem; margin-bottom:1.2rem; letter-spacing:1px;'>Derulează și citește-le pe toate...</p>",
-        unsafe_allow_html=True)
+    st.markdown("<p style='text-align:center; color:#ff8a9a; font-size:0.95rem; margin-bottom:1.2rem; letter-spacing:1px;'>Derulează și citește-le pe toate...</p>", unsafe_allow_html=True)
 
     motive = [
         "1. Pentru zâmbetul tău care luminează orice cameră",
@@ -315,7 +325,7 @@ with col_right:
     # Melodie SoundCloud
     st.markdown('<div class="music-box">', unsafe_allow_html=True)
     st.markdown("### 🎵 Melodia noastră")
-
+    
     st.components.v1.html("""
         <iframe width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay"
             src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/alex-coretes/pupsies-misery-slowed&color=%23ff2e63&auto_play=true&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false">
@@ -325,16 +335,13 @@ with col_right:
 
     # Buton surpriză
     if st.button("✨ Deschide surpriza mea pentru tine ✨", use_container_width=True):
-
-        # ========== ANIMAȚIE FRUMOASĂ ==========
+        
+        # Animație
         st.components.v1.html("""
         <div id="animation-container" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; overflow:hidden;"></div>
-
         <script>
             const container = document.getElementById('animation-container');
             const symbols = ['❤️', '💕', '💗', '💖', '✨', '🌸', '💞', '💓'];
-
-            // Creăm multe inimioare + stele care zboară
             for (let i = 0; i < 60; i++) {
                 const el = document.createElement('div');
                 el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
@@ -347,38 +354,23 @@ with col_right:
                 el.style.animationDelay = (Math.random() * 0.8) + 's';
                 container.appendChild(el);
             }
-
-            // Stiluri animație
             const style = document.createElement('style');
             style.innerHTML = `
                 @keyframes fly {
-                    0% {
-                        transform: translateY(0) scale(0.3) rotate(0deg);
-                        opacity: 0;
-                    }
-                    10% {
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: translateY(-120vh) scale(1.2) rotate(${Math.random() > 0.5 ? 360 : -360}deg);
-                        opacity: 0;
-                    }
+                    0% { transform: translateY(0) scale(0.3) rotate(0deg); opacity: 0; }
+                    10% { opacity: 1; }
+                    100% { transform: translateY(-120vh) scale(1.2) rotate(360deg); opacity: 0; }
                 }
             `;
             document.head.appendChild(style);
-
-            // Ștergem după 7 secunde
-            setTimeout(() => {
-                container.remove();
-            }, 7000);
+            setTimeout(() => { container.remove(); }, 7000);
         </script>
         """, height=0)
 
-        # Cardul cu conținut
         st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-
+        
         st.markdown('<div class="love-text">I love you Rebeca</div>', unsafe_allow_html=True)
-
+        
         # GIF Hello Kitty
         st.markdown("""
         <div style="display: flex; justify-content: center; margin: 1.2rem 0;">
@@ -387,9 +379,9 @@ with col_right:
                  style="width: 270px; border-radius: 22px; box-shadow: 0 12px 35px rgba(255,46,99,0.5);">
         </div>
         """, unsafe_allow_html=True)
-
+        
         st.markdown("### ❤️ La mulți ani, iubirea mea!")
-
+        
         messages = [
             "Astăzi universul sărbătorește existența ta.",
             "Să ai parte de zâmbete adevărate, de liniște și de momente care îți umplu sufletul.",
@@ -398,17 +390,30 @@ with col_right:
             "Să fii sănătoasă, iubită și mereu înconjurată de lumină.",
             "Te iubesc mai mult cu fiecare răsărit."
         ]
-
+        
         for msg in messages:
             st.markdown(f'<p class="message">❤️ {msg}</p>', unsafe_allow_html=True)
 
+        # ========== MESAJ DE ÎMPĂCARE ==========
+        st.markdown("""
+        <div class="apology-box">
+            <b>Rebeca,</b><br><br>
+            Știu că am greșit și că te-am rănit.<br>
+            Nu există nicio scuză care să șteargă ce s-a întâmplat, dar vreau să știi că îmi pare sincer rău.<br><br>
+            Te iubesc în continuare.<br>
+            Îmi lipsesc zâmbetul tău, vocea ta și pur și simplu prezența ta.<br>
+            Vreau să fiu din nou alături de tine, dacă mai există vreo șansă.<br><br>
+            Dacă ești dispusă să vorbim, sunt aici.<br><br>
+            <b>Cu toată inima</b>
+        </div>
+        """, unsafe_allow_html=True)
+        
         st.markdown("---")
-        st.markdown("##### Cu toată inima mea,")
         st.markdown("##### La mulți ani, Rebeca ❤️")
         st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
-
+    
     st.markdown("""
     <div class="glass-card" style="text-align:center; margin-top:1rem;">
         <p style="font-size:1.2rem; color:#ffb3c1; margin:0; line-height:1.6;">
